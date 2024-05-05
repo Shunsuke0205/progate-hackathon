@@ -22,7 +22,7 @@ public class OpponentCollision : MonoBehaviour
         Debug.Log("Hit!");
         Debug.Log(oponent.gameObject.name);
         if (oponent.gameObject.name == "CubeObstacle") {
-            oponent.transform.position = new Vector3(100, 2, 30);
+            Destroy(oponent.gameObject);
         }
         
     }
