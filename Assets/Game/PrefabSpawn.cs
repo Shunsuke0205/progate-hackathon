@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PrefabSpawn : MonoBehaviour
 {
-    [SerializeField] private GameObject prefab;
+    [SerializeField] private GameObject prefab1;
+    [SerializeField] private GameObject prefab2;
     [SerializeField] private float spawn_probability = 0.5F;
     [SerializeField] private float spawn_interval = 1.0F;
 
@@ -32,7 +33,12 @@ public class PrefabSpawn : MonoBehaviour
         float random_value_float = Random.Range(0.0f, 1.0f);
         if (random_value_float < spawn_probability * Time.deltaTime) {
             // プレハブを元にインスタンスを生成
-            Instantiate(prefab, pos, Quaternion.identity);
+            Instantiate(prefab1, pos, Quaternion.identity);
+        }
+        float random_value_float2 = Random.Range(0.0f, 1.0f);
+        if (random_value_float2 < spawn_probability * Time.deltaTime) {
+            // プレハブを元にインスタンスを生成
+            Instantiate(prefab2, pos, Quaternion.identity);
         }
 
     }

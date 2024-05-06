@@ -7,6 +7,8 @@ public class ScoreBoard : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private GameObject supabaseClientObject;
+    [SerializeField] private GameObject ScoreBoardSpawn;
+    public int givenScore = 0;
 
     private SupabaseClient SupabaseClient;
     async void Start()
@@ -15,6 +17,7 @@ public class ScoreBoard : MonoBehaviour
         SupabaseClient = supabaseClientObject.GetComponent<SupabaseClient>();
         var scores = await SupabaseClient.FetchAllScores();
         scoreText.text = "<b>Score Board</b>\n";
+        scoreText.text += $"Your score:   {givenScore}\n";
         int rank = 1;
         foreach (var score in scores)
         {

@@ -24,11 +24,12 @@ public class OpponentCollision : MonoBehaviour
     {
         // Debug.Log ("time (sec.)" + Time.time);
     }
+
     void OnTriggerEnter(Collider oponent)
     {
         Debug.Log("Hit!");
-        Debug.Log(oponent.gameObject.name);
-        if (oponent.gameObject.name == "CubeObstacle") {
+        // Debug.Log(oponent.gameObject.name);
+        if (oponent.gameObject.name == "Meet1(Clone)" || oponent.gameObject.name == "Pumpkin(Clone)") {
             Destroy(oponent.gameObject);
             playerLife -= 1;
             if (playerLife >= 0) {

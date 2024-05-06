@@ -3,12 +3,13 @@ using OpenCvSharp.Demo;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 public class CascadeRecognizer : WebCamera
 {
     public TextAsset faces;
-    public Image mask;
-    //public Sphere mask;
+    public GameObject playerObject;
     public RectTransform canvasRectTransform;
     private CascadeClassifier cascadeFaces;
 	[SerializeField] float threshX;
@@ -42,17 +43,19 @@ public class CascadeRecognizer : WebCamera
             var cx = rawFaces[i].TopLeft.X + (rawFaces[i].Width / 2f);
             var cy = rawFaces[i].TopLeft.Y + (rawFaces[i].Height / 2f);
 
-			var facePosition = 1;
+			Debug.Log(cx);
+
+        	Vector3 pos = playerObject.transform.position;
 			if (cx < image.Width / 2f - threshX){
-				facePosition = 0;
+            	pos.x = 2.0f;
 			}
 			else if (cx > image.Width / 2f + threshX){
-				facePosition = 2;
+            	pos.x = -2.0f;
 			}
 			else {
-				facePosition = 1;
+            	pos.x = 0.0f;
 			}
-			Debug.Log(facePosition);
+        	playerObject.transform.position = pos;
         }
         output = OpenCvSharp.Unity.MatToTexture(image);
         return true;

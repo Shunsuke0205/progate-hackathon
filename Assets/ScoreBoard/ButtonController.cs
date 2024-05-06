@@ -16,7 +16,7 @@ public class ButtonController : MonoBehaviour
     {
         Debug.Log("Button Clicked");
         string name = nameField.GetComponent<TMP_InputField>().text;
-        int score = Random.Range(0, 100);
+        int score = scoreBoardObject.GetComponent<ScoreBoard>().givenScore;
         Debug.Log($"Sending score {name} {score}");
         var supabaseClient = supabaseClientObject.GetComponent<SupabaseClient>();
         supabaseClient.InsertScore(new ScoreModel { UserName = name, Score = score });
